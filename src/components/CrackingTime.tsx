@@ -5,6 +5,12 @@ import CheckIcon from "../assets/checkIcon.svg";
 import EyeOnIcon from "../assets/eyeOnIcon.svg";
 import EyeOffIcon from "../assets/eyeOffIcon.svg";
 import { getStrength } from "../utils/passwordStrength";
+import {
+  checkLowerCase,
+  checkNumbers,
+  checkSpecialChar,
+  checkUpperCase,
+} from "../utils/checkRegExp";
 
 export default function CrackingTime() {
   const [input, setInput] = useState("");
@@ -14,6 +20,13 @@ export default function CrackingTime() {
     { background: "bg-orangePeel" },
     { background: "bg-orangePeel" },
     { background: "bg-greenDarkMint" },
+  ];
+
+  const textCases = [
+    { label: "lower case", checkOccurence: checkLowerCase },
+    { label: "upper case", checkOccurence: checkUpperCase },
+    { label: "numbers", checkOccurence: checkNumbers },
+    { label: "symbols", checkOccurence: checkSpecialChar },
   ];
 
   function handleInput(value: string) {
@@ -62,10 +75,18 @@ export default function CrackingTime() {
             Characters amount: {input.length}
           </span>
           <ul className="flex gap-4 capitalize">
-            <li className="text-gray50 text-sm font-normal">lower case</li>
-            <li className="text-gray50 text-sm font-normal">upper case</li>
-            <li className="text-gray50 text-sm font-normal">numbers</li>
-            <li className="text-gray50 text-sm font-normal">symbols</li>
+            {textCases.map((item, index) => (
+              <li
+                key={index}
+                className={`${
+                  item.checkOccurence(input)
+                    ? "text-greenDarkMint"
+                    : "text-gray-50"
+                } text-sm font-normal`}
+              >
+                {item.label}
+              </li>
+            ))}
           </ul>
         </div>
         <footer className="flex items-center justify-center gap-3">
