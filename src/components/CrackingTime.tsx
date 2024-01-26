@@ -2,8 +2,11 @@ import { useState } from "react";
 import { calcEntropy, calculateTimeToCrack } from "../utils/crackingTime";
 
 import CheckIcon from "../assets/checkIcon.svg";
+import CloseIcon from "../assets/closeIcon.svg";
+import InfoIcon from "../assets/infoIcon.svg";
 import EyeOnIcon from "../assets/eyeOnIcon.svg";
 import EyeOffIcon from "../assets/eyeOffIcon.svg";
+
 import { getStrength } from "../utils/passwordStrength";
 import {
   checkLowerCase,
@@ -11,6 +14,15 @@ import {
   checkSpecialChar,
   checkUpperCase,
 } from "../utils/checkRegExp";
+
+type BoxMessage = {
+  [key: string]: {
+    icon: ImageMetadata;
+    message: string;
+    borderColor: string;
+    textColor: string;
+  };
+};
 
 export default function CrackingTime() {
   const [input, setInput] = useState("");
@@ -30,6 +42,33 @@ export default function CrackingTime() {
     { label: "symbols", checkOccurence: checkSpecialChar },
   ];
 
+  const boxMessages: BoxMessage = {
+    veryWeak: {
+      icon: CloseIcon,
+      message: "Bad news! The password is too short!",
+      borderColor: "border-redOrange",
+      textColor: "text-redOrange",
+    },
+    weak: {
+      icon: InfoIcon,
+      message: "Using that password avoids rapid attackers!",
+      borderColor: "border-orangePeel",
+      textColor: "text-orangePeel",
+    },
+    strong: {
+      icon: CheckIcon,
+      message: "Using that password avoids rapid attackers!",
+      borderColor: "border-greenDarkMint",
+      textColor: "text-greenDarkMint",
+    },
+    veryStrong: {
+      icon: CheckIcon,
+      message: "Using that password avoids rapid attackers!",
+      borderColor: "border-greenDarkMint",
+      textColor: "text-greenDarkMint",
+    },
+  };
+
   function handleInput(value: string) {
     setInput(value);
   }
@@ -43,7 +82,7 @@ export default function CrackingTime() {
     const strength = getStrength(entropy);
 
     switch (strength) {
-      case "very weak":
+      case "veryWeak":
         return 1;
       case "weak":
         return 2;
@@ -52,6 +91,24 @@ export default function CrackingTime() {
       default:
         return 4;
     }
+  }
+
+  function getBoxMessage() {
+    const entropy = calcEntropy(input);
+    const strength = getStrength(entropy);
+
+    return (
+      <div
+        className={`flex items-center gap-2 py-10 px-2 rounded-md border ${boxMessages[strength].borderColor} w-full`}
+      >
+        <img src={boxMessages[strength].icon.src} alt="icon to test result" />
+        <span
+          className={`text-xl font-bold text-center ${boxMessages[strength].textColor}`}
+        >
+          {boxMessages[strength].message}
+        </span>
+      </div>
+    );
   }
 
   return (
@@ -114,12 +171,7 @@ export default function CrackingTime() {
           {calculateTimeToCrack(input)}
         </h2>
       </div>
-      <div className="flex items-center gap-2 py-10 px-2 rounded-md border border-greenDarkMint w-full">
-        <img src={CheckIcon.src} alt="icon to test result" />
-        <span className="text-xl font-bold text-center text-greenDarkMint">
-          Great! Using that password avoids rapid attackers!
-        </span>
-      </div>
+      {getBoxMessage()}
     </>
   );
 }
