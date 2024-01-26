@@ -1,5 +1,5 @@
 function isVeryStrong() {
-  return "very strong";
+  return "veryStrong";
 }
 
 function isStrong(entropy: number) {
@@ -18,7 +18,7 @@ function isWeak(entropy: number) {
 
 function isVeryWeak(entropy: number) {
   if (entropy >= 0 && entropy <= 35) {
-    return "very weak";
+    return "veryWeak";
   }
   return isWeak(entropy);
 }
