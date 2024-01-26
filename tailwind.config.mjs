@@ -14,6 +14,7 @@ export default {
         redOrange: "#FF3B30",
         orangePeel: "#FF9F0A",
         greenDarkMint: "#35C95A",
+        greenDarkMint50: "#1E8839 ",
       },
       fontFamily: {
         sans: ["Montserrat", "ui-sans-serif", "system-ui"],

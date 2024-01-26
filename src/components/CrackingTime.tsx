@@ -19,8 +19,8 @@ export default function CrackingTime() {
   const passwordStrengthBars = [
     { background: "bg-redOrange" },
     { background: "bg-orangePeel" },
-    { background: "bg-orangePeel" },
     { background: "bg-greenDarkMint" },
+    { background: "bg-greenDarkMint50" },
   ];
 
   const textCases = [
