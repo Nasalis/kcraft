@@ -46,14 +46,23 @@ function convertSecondsToTime(seconds: number) {
   const [days, hrsRemaing] = divmod(hours, 24);
   const [years, daysRemaing] = divmod(days, 365);
 
+  if (secondsRemaing > 0 && minutes === 0) {
+    return `${secondsRemaing.toPrecision(2)} seconds`;
+  }
+
   if (years >= 1e6) {
     return `${years.toString()[0]} milion years`;
   }
 
-  return `${years} years, ${daysRemaing} days, ${hrsRemaing} hours, ${minsRemaing} minutes, ${secondsRemaing} seconds`;
+  return `${years} years, ${daysRemaing} days, ${hrsRemaing} hours, ${minsRemaing} minutes, ${secondsRemaing.toPrecision(
+    2
+  )} seconds`;
 }
 
 export function calculateTimeToCrack(password: string) {
+  if (!password.length) {
+    return "0 second";
+  }
   // Supposing a computer that explore a billion possibilities per second (10e9 operations per 1 second)
   const range = getPassRange(password);
   const possibility_space = range ** password.length;
