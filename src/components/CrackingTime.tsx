@@ -14,6 +14,7 @@ import {
 
 export default function CrackingTime() {
   const [input, setInput] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const passwordStrengthBars = [
     { background: "bg-redOrange" },
@@ -31,6 +32,10 @@ export default function CrackingTime() {
 
   function handleInput(value: string) {
     setInput(value);
+  }
+
+  function handlePasswordVisible() {
+    setPasswordVisible((prev) => !prev);
   }
 
   function getStrengthBarsAmount() {
@@ -61,13 +66,14 @@ export default function CrackingTime() {
             name="passwordTest"
             onChange={(event) => handleInput(event.target.value)}
             className="bg-transparent rounded-md border-2 border-gray60 py-4 px-3 w-full text-white text-base font-normal"
-            type="text"
+            type={passwordVisible ? "text" : "password"}
             value={input}
           />
           <img
-            src={EyeOnIcon.src}
+            src={passwordVisible ? EyeOffIcon.src : EyeOnIcon.src}
             alt="icon to visible password"
-            className="absolute top-5 right-4 w-5 h-5"
+            className="absolute top-5 right-4 w-5 h-5 cursor-pointer"
+            onClick={handlePasswordVisible}
           />
         </div>
         <div className="flex items-center justify-between w-full">
