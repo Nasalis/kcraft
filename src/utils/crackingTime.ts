@@ -28,7 +28,6 @@ function calcPassRange(...functions: Array<(data: string) => number>) {
   return (password: string) => {
     let passRange = 0;
     functions.forEach((func) => (passRange += func(password)));
-    console.log(`Range Pass: ${passRange}`);
     return passRange;
   };
 }
@@ -36,7 +35,7 @@ function calcPassRange(...functions: Array<(data: string) => number>) {
 export const getPassRange = (password: string) =>
   calcPassRange(hasOnlyLetters, hasOnlyNumbers, hasSpecialChar)(password);
 
-export function calc_entropy(password: string) {
+export function calcEntropy(password: string) {
   const range = getPassRange(password);
   return Math.log2(range ** password.length);
 }
@@ -59,6 +58,5 @@ export function calculateTimeToCrack(password: string) {
   const range = getPassRange(password);
   const possibility_space = range ** password.length;
   const seconds_time = possibility_space / 10e9;
-  console.log("Seconds time", possibility_space);
   return convertSecondsToTime(seconds_time);
 }
