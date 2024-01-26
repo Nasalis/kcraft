@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components"
 import {Image} from "astro:assets"
 ---
 
@@ -13,9 +14,18 @@ import {Image} from "astro:assets"
   />
   <nav class="pt-8">
     <ul class="flex flex-col capitalize gap-4 text-white font-normal text-sm">
-      <li>Password generator</li>
-      <li>Cracking time test</li>
-      <li>Password manager</li>
+      <li class="flex items-center justify-start gap-3 ">
+        <Icon name={"material-symbols:password"} width={24} height={24} class={"border border-white"} /> 
+        Password generator
+      </li>
+      <li class="flex items-center justify-start gap-3 ">
+        <Icon name={"material-symbols:timer-outline"} width={24} height={24} class={"border border-white"} /> 
+         Cracking time test
+      </li>
+      <li class="flex items-center justify-start gap-3 ">
+        <Icon name={"material-symbols:folder-managed-outline"} width={24} height={24} class={"border border-white"} /> 
+         Password manager
+      </li>
     </ul>
   </nav>
 </aside>
