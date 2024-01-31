@@ -1,9 +1,93 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Main from '../components/Main.astro';
+import Header from '../components/Header.astro';
+import { Image } from 'astro:assets';
 ---
 
-<Layout title="KCraft">
-	<main>
-	</main>
+<Layout title="KCraft | Home">
+	<Main>
+		<Header title="KCraft"/>
+		<section class="grid gap-4">
+			<p class="text-white">
+				Welcome to KCraft - your reliable tool for assessing the robustness of your passwords! We understand that online security is a top priority, and that's why we've developed this intuitive and efficient platform.
+			</p>
+			<p class="text-white">
+				With KCraft, you can quickly analyze the strength of your passwords, receiving immediate feedback on the complexity and security of each one. Our calculator considers a variety of criteria, including length, use of special characters, uppercase letters, and numbers, ensuring you're always one step ahead in securing your online accounts.
+			</p>
+		</section>
+		<section class="grid gap-4">
+			<h2 class="text-white text-4xl mb-3">
+				The Most Common Poor Password Practices
+			</h2>
+			<ul class="flex flex-wrap items-center justify-center gap-12">
+				<li class="grid place-items-center w-[210px] h-[184px]">
+					<Image 
+						src="/assets/password-protection.svg"
+						alt="asd"
+						width={210}
+						height={184}
+					/>
+					<span class="text-white text-center">
+						Create easy passwords
+					</span>
+				</li>
+				<li class="grid place-items-center w-[210px] h-[184px]">
+					<Image 
+						src="/assets/strong-password.svg" 
+						alt={"asd"} 
+						width={210} 
+						height={184}
+					/>
+					<span class="text-white text-center">
+						Reuse passwords
+					</span>
+				</li>
+				<li class="grid place-items-center w-[210px] h-[184px]">
+					<Image 
+						src="/assets/protecting-password.svg" 
+						alt={"asd"} 
+						width={210} 
+						height={184}
+					/>
+					<span class="text-white text-center">
+						Sharing Passwords Insecurely
+					</span>
+				</li>
+				<li class="grid place-items-center w-[210px] h-[184px]">
+					<Image 
+						src="/assets/shield-password.svg" 
+						alt={"asd"} 
+						width={210} 
+						height={184}
+					/>
+					<span class="text-white text-center">
+						Passwords on Spreadsheets or on your Phone
+					</span>
+				</li>
+				<li class="grid place-items-center w-[210px] h-[184px]">
+					<Image 
+						src="/assets/biometric-auth.svg" 
+						alt={"asd"} 
+						width={210} 
+						height={184}
+					/>
+					<span class="text-white text-center">
+						Skip Adopting MFA
+					</span>
+				</li>
+				<li class="grid place-items-center w-[210px] h-[184px]">
+					<Image 
+						src="/assets/browser-save-pass.svg" 
+						alt={"asd"} 
+						width={210} 
+						height={184}
+					/>
+					<span class="text-white text-center">
+						Letting Browsers Save Your Passwords
+					</span>
+				</li>
+			</ul>
+		</section>
+	</Main>
 </Layout>
