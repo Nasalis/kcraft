@@ -4,15 +4,21 @@ import Main from "../components/Main.astro";
 import Layout from "../layouts/Layout.astro";
 import CrackingTime from "../components/CrackingTime.tsx"
 
+import Header from "../components/Header.astro"
+import {Image} from "astro:assets"
+
 ---
 
 <Layout title="Cracking Time Test | KCraft">
   <Main>
-    <header>
-      <h1 class="text-white text-4xl font-normal">
-        Password Cracking Time Test
-      </h1>
-    </header>
+    <Header title="Password Cracking Time Test">
+      <Image
+        src="/assets/time-flies.svg"
+        alt="watches with wings flying"
+        width={100}
+        height={100}
+      />
+    </Header>
     <CrackingTime client:load/>
     <footer class="flex items-center gap-3 text-white text-base font-normal">
       <Icon name={"material-symbols:info-rounded"} width={24} height={24}/>
